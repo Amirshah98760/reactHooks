@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -19,6 +18,20 @@ const App = () => {
   if(count < 0){
     setCount(0)
   }
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://dummyjson.com/test');
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  })
 
   return (
    <div className='mainContainer'>
