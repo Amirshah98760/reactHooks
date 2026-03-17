@@ -1,7 +1,16 @@
 import { useState , useEffect} from 'react'
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(() => {
+    const savedCount = localStorage.getItem('count');
+    return savedCount !== null ? JSON.parse(savedCount) : 0;
+  });
+  
+  useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+  }, [count]);
+
+  // const [count, setCount] = useState(0)
 
   const increment = () => {
     setCount(count + 1)
@@ -24,7 +33,7 @@ const App = () => {
       try {
         const response = await fetch('https://dummyjson.com/test');
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
