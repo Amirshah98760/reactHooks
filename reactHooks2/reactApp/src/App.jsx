@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [text, setText] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, doloremque.")
+  const [inputText, setInputText] = useState("");
+  const [textAreaContent, setTextAreaContent] = useState("");
   const [isTextVisible, setIsTextVisible] = useState(true)
   const [car , setCar] = useState({
     name:"BMW",
@@ -58,6 +60,25 @@ if(count < 0){
         >
           {isTextVisible ? "Hide Text" : "Show Text"}
         </button>
+      </div>
+
+      {/* 3. Input Mirror
+      Create an input box that:
+      Displays whatever the user types below it live */}
+      <div className='border-2 rounded p-5 border-gray-500 w-2xl'>
+        <input 
+        type="text" 
+        placeholder='Type something...' 
+        className='border-2 border-gray-300 rounded p-2 w-full mb-4'
+        onChange={(e) => setInputText(e.target.value)}
+        />
+        <p className='text-lg text-center'>{inputText}</p>
+        <p className='text-lg text-center'>{inputText.length}</p>
+      </div>
+
+      <div>
+        <textarea name="textArea" id="" className='border-2 border-gray-300 rounded p-2 w-full mb-4' onChange={(e) => setTextAreaContent(e.target.value)}></textarea>
+        <p className='text-lg text-center'>{textAreaContent.length}</p>
       </div>
     </div>
   )
